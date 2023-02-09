@@ -6,11 +6,13 @@ import { usePopups } from '../../contexts/PopupContext';
 import useWindowSize from '../../hooks/UseWindowSize';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
 const Header = ({ isDark }) => {
   const [popupState, ] = usePopups();
   const [headerClassName, setHeaderClassName] = useState('header');
   const isMobileSized = useWindowSize().width < 650;
+  const {  } = useAuth();
 
   useEffect(() => {
     if (isMobileSized && !isDark) {

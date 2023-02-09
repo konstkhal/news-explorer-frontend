@@ -5,10 +5,12 @@
   align-items: center;
   margin: 0;
   padding: 0 16px;
+  position: relative;
+  z-index: 2;
 }
 
 .header_dark {
-  background-color: #1A1B22;
+  background-color: #1a1b22;
 }
 
 @media screen and (min-width: 650px) {

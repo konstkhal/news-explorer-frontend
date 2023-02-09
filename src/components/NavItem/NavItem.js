@@ -8,14 +8,14 @@ const NavItem = ({ path = '/', isDark, hasBubble, text, isLarge, minWidth, child
   let navItemClassname = `navbar__text ${isDark ? 'navbar__text_dark' : ''}`;
   if (hasBubble) navItemClassname += ` navbar__text_with-bubble`;
   if (isLarge) navItemClassname += ` navbar__text_with-large-bubble`;
-  const { signIn, signOut } = useAuth();
+  const {signOut } = useAuth();
   const [, popupDispatch] = usePopups();
   const activeClassName = noDecoration || hasBubble ? 'navbar__link' : `navbar__link navbar__link_active_${isDark ? 'dark' : 'light'}`;
 
   const handleClick = () => {
-    signinButton && signIn('Elise');
+    signinButton && popupDispatch(popupActions.openSignInPopup);
     signoutButton && signOut();
-    popupDispatch(popupActions.closeAll);
+    popupDispatch(popupActions.closeUserMenu);
   };
   return (
     <>
