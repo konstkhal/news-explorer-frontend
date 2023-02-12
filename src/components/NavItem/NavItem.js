@@ -1,35 +1,35 @@
-import './NavItem.css';
-import { NavLink } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import { usePopups } from '../../contexts/PopupContext';
-import { popupActions } from '../../reducers/popupReducer';
+import "./NavItem.css";
+import { NavLink } from "react-router-dom";
+import { usePopups, popupActions } from "../../contexts/PopupContext";
+import { useLocation } from "react-router";
 
-const NavItem = ({ path = '/', isDark, hasBubble, text, isLarge, minWidth, children, signinButton, signoutButton, noDecoration, alignSelf }) => {
-  let navItemClassname = `navbar__text ${isDark ? 'navbar__text_dark' : ''}`;
-  if (hasBubble) navItemClassname += ` navbar__text_with-bubble`;
-  if (isLarge) navItemClassname += ` navbar__text_with-large-bubble`;
-  const {signOut } = useAuth();
+const NavItem = ({ path = "/", text, minWidth, children }) => {
   const [, popupDispatch] = usePopups();
-  const activeClassName = noDecoration || hasBubble ? 'navbar__link' : `navbar__link navbar__link_active_${isDark ? 'dark' : 'light'}`;
+  const isSavedArticles = useLocation().pathname === "/saved-articles";
+  const navItemClassname = `navbar__text ${
+    isSavedArticles ? "navbar__text_dark" : ""
+  }`;
+  const activeClassName = `navbar__link navbar__link_active_${
+    isSavedArticles ? "dark" : "light"
+  }`;
 
   const handleClick = () => {
-    signinButton && popupDispatch(popupActions.openSignInPopup);
-    signoutButton && signOut();
     popupDispatch(popupActions.closeUserMenu);
   };
+
   return (
-    <>
-      <li onClick={handleClick} className={navItemClassname}>
-        <NavLink
-          style={{ minWidth: minWidth, alignSelf: alignSelf }}
-          className={({ isActive }) => (isActive ? activeClassName : 'navbar__link')}
-          to={path}
-        >
-          {text}
-          {children}
-        </NavLink>
-      </li>
-    </>
+    <li onClick={handleClick} className={navItemClassname}>
+      <NavLink
+        style={{ minWidth: minWidth }}
+        className={({ isActive }) =>
+          isActive ? activeClassName : "navbar__link"
+        }
+        to={path}
+      >
+        {text}
+        {children}
+      </NavLink>
+    </li>
   );
 };
 

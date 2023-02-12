@@ -1,10 +1,9 @@
-import { usePopups } from '../../contexts/PopupContext';
-import { popupActions } from '../../reducers/popupReducer';
 import './PopupWithForm.css';
+import { cloneElement } from 'react';
+import { usePopups, popupActions } from '../../contexts/PopupContext';
 
 const PopupWithForm = (props) => {
-  const { hideForm, name, title, onSubmit, children, buttonText, isOpen, isValid = true, redirectText, handleRedirect } = props;
-  const buttonClassName = `form__submit-button ${!isValid ? 'form__submit-button_disabled' : ''}`;
+  const { hideForm, name, title, /* onSubmit, */ children, /*  buttonText, */ isOpen, redirectText, handleRedirect } = props;
   const [, popupDispatch] = usePopups();
 
   const handleClick = (e) => {
@@ -14,27 +13,17 @@ const PopupWithForm = (props) => {
       popupDispatch(popupActions.closeAll);
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit();
-  };
+
   return (
     <div onMouseDown={handleClick} className={`popup popup_type_${name} ${isOpen ? 'popup_active' : ''}`}>
       <div className="popup__window">
         <button type="button" className="popup__close-button" aria-label="close" onClick={handleClick}></button>
         <h2 className="popup__title">{title}</h2>
-        {!hideForm && (
-          <form onSubmit={handleSubmit} className={`form form_${name}`} name={name}>
-            {children}
-            <button disabled={!isValid} type="submit" className={buttonClassName}>
-              {buttonText}
-            </button>
-          </form>
-        )}
+        {!hideForm && cloneElement(children, props)}
         <div className="form__redirect-wrapper" style={{ display: hideForm ? 'block' : 'flex' }}>
           {!hideForm && <span>or</span>}
           <nav>
-            <button className="form__redirect-button" onClick={handleRedirect}>
+            <button className="form__redirect-button hover-fade" onClick={handleRedirect}>
               {redirectText}
             </button>
           </nav>

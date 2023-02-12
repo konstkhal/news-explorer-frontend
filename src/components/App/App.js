@@ -4,8 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Footer from '../Footer/Footer';
 import Articles from '../Articles/Articles';
 import { useEffect } from 'react';
-import { usePopups } from '../../contexts/PopupContext';
-import { popupActions } from '../../reducers/popupReducer';
+import { usePopups, popupActions } from '../../contexts/PopupContext';
 
 function App() {
   const [, popupDispatch] = usePopups();
@@ -22,7 +21,7 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/saved-articles" element={<Articles isDark />} />
+        <Route path="/saved-articles" element={<Articles />} />
       </Routes>
       <Footer />
     </div>

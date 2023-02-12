@@ -1,13 +1,12 @@
 import './UserMenu.css';
 import NavItem from '../NavItem/NavItem';
-import { usePopups } from '../../contexts/PopupContext';
-import { popupActions } from '../../reducers/popupReducer';
+import { usePopups, popupActions } from '../../contexts/PopupContext';
 import { useAuth } from '../../contexts/AuthContext';
-import LogoutIcon from '../LogoutIcon/LogoutIcon';
 import { useLocation } from 'react-router';
+import SignInButton from '../SignInButton/SignInButton';
+import SignOutButton from '../SignOutButton/SignOutButton';
 
-const UserMenu = ({ isDark }) => {
-  const menuClassName = `user-menu ${isDark ? 'user-menu_dark' : ''}`;
+const UserMenu = () => {
   const [, popupDispatch] = usePopups();
   const { currentUser } = useAuth();
   const isSavedArticles = useLocation().pathname === '/saved-articles';
@@ -20,17 +19,9 @@ const UserMenu = ({ isDark }) => {
 
   return (
     <>
-      <ul className={menuClassName}>
-        <NavItem noDecoration isDark={isDark} text={displayPath} path={routeToPath} />
-        {currentUser.isLoggedIn ? (
-          <>
-            <NavItem signoutButton hasBubble isLarge isDark={isDark} text={currentUser.name}>
-              <LogoutIcon styles={{ marginLeft: '1rem' }} isDark={isDark} />
-            </NavItem>
-          </>
-        ) : (
-          !isSavedArticles && <NavItem signinButton noDecoration isDark={isDark} text="Sign in" hasBubble isLarge></NavItem>
-        )}
+      <ul className="user-menu">
+        <NavItem noDecoration text={displayPath} path={routeToPath} />
+        {currentUser.isLoggedIn ? <SignOutButton inUserMenu /> : !isSavedArticles && <SignInButton inUserMenu />}
       </ul>
       <div onClick={handleOverlayClick} className="user-menu__overlay"></div>
     </>
