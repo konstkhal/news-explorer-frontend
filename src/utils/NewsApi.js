@@ -3,21 +3,22 @@ class NewsApi {
     this._baseUrl = baseUrl;
     this._apiKey = apiKey; /* '2022-07-11'; */
     this._fromOffset = fromOffset;
-  }
-
-  _getFromDate = () => {
     const date = new Date();
-    this._fromDate = `${date.getFullYear()}-${
-      date.getMonth() - this._fromOffset
-    }-${date.getDate() + 1}`;
-  };
+    this._todaysDate = `${date.getFullYear()}-${
+      date.getMonth() + 1
+    }-${date.getDate()}`;
+    this._fromDate = `${date.getFullYear()}-${date.getMonth() + 1}-${
+      date.getDate() - this._fromOffset
+    }`;
+    console.log(this._fromDate);
+  }
 
   _handleResponse = (res) =>
     res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 
   getNewsByQuery = (param) => {
     return fetch(
-      `${this._baseUrl}?q=${param}&from=${this._fromDate}&sortedBy=publishedAt&apiKey=${this._apiKey}`
+      `${this._baseUrl}?q=${param}&from=${this._fromDate}&to=${this._todaysDate}&sortedBy=publishedAt&pageSize=100&apiKey=${this._apiKey}`
     ).then(this._handleResponse);
   };
 }
