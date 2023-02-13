@@ -1,10 +1,15 @@
 # News Explorer
 
-Search, browse and bookmark your favorite news articles for later reading.
+Find and bookmark your favorite news articles for later reading.
 
-- [Project page](https://wassup-42.omriruvio.com/)
+- [Project page](https://www.wassup-42.students.nomoredomainssbs.ru/)
 
 - [Backend repo](https://github.com/konstkhal/news-explorer-backend)
+
+## Roadmap
+
+- Article share
+- Public API
 
 # Getting Started with Create React App
 
