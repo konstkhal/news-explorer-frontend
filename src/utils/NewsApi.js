@@ -1,7 +1,7 @@
 class NewsApi {
-  constructor(baseUrl, apiKey, fromOffset = 7) {
+  constructor(baseUrl, apiKey, fromOffset = 90) {
     this._baseUrl = baseUrl;
-    this._apiKey = apiKey; /* '2022-07-11'; */
+    this._apiKey = apiKey;
     this._fromOffset = fromOffset;
     const date = new Date();
     this._todaysDate = `${date.getFullYear()}-${
@@ -24,6 +24,8 @@ class NewsApi {
 }
 
 export const newsApi = new NewsApi(
-  "https://nomoreparties.co/news/v2/top-headlines?country=us",
+  // everything
+  //top-headlines?country=us
+  "https://nomoreparties.co/news/v2/everything",
   "a3048e784a1a48f188b3c086840f45fb"
 );

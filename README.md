@@ -1,3 +1,11 @@
+# News Explorer
+
+Search, browse and bookmark your favorite news articles for later reading.
+
+- [Project page](https://wassup-42.omriruvio.com/)
+
+- [Backend repo](https://github.com/konstkhal/news-explorer-backend)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
