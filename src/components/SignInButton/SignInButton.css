@@ -1,5 +1,6 @@
 .navbar__sign-in-wrapper {
   cursor: pointer;
+
   min-height: 40px;
   min-width: 152px;
   display: flex;
