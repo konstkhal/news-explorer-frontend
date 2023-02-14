@@ -16,18 +16,18 @@
   background-image: url('../../images/close.svg');
 }
 
-.cross-button_dark {
+.cross-button_theme_dark {
   background-image: url('../../images/close-black.svg');
 }
 
-.hamburger_dark {
+.hamburger_theme_dark {
   background-image: url('../../images/burger-black.svg');
 }
 
-.cross-button_light {
+.cross-button_theme_light {
   background-image: url('../../images/close.svg');
 }
 
-.hamburger_light {
+.hamburger_theme_light {
   background-image: url('../../images/burger.svg');
 }

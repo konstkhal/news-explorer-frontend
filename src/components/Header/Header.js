@@ -17,7 +17,7 @@ const Header = () => {
   useEffect(() => {
     if (isMobileSized) {
       setHeaderClassName(
-        `header ${popupState.isUserMenuOpen ? "header_dark" : ""}`
+        `header ${popupState.isUserMenuOpen ? "header_theme_dark" : ""}`
       );
     } else {
       setHeaderClassName("header");

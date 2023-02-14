@@ -7,12 +7,12 @@ const NavItem = ({ path = "/", text, minWidth, children }) => {
   const [popupState, popupDispatch] = usePopups();
   const isSavedArticles = useLocation().pathname === "/saved-articles";
   const navItemClassname = `navbar__text ${
-    isSavedArticles ? "navbar__text_dark" : ""
+    isSavedArticles ? "navbar__text_theme_dark" : ""
   }`;
   const userMenuStyle = {
     color: isSavedArticles && popupState.isUserMenuOpen ? "white" : "",
   };
-  const activeClassName = `navbar__link navbar__link_${
+  const activeClassName = `navbar__link navbar__link_theme_${
     isSavedArticles ? "dark" : "light"
   }`;
 

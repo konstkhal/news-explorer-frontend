@@ -16,11 +16,11 @@
   border-bottom: 3px solid transparent;
 }
 
-.navbar__link_dark {
+.navbar__link_theme_dark {
   color: #1a1b22;
   border-bottom: #1a1b22 3px solid;
 }
 
-.navbar__link_light {
+.navbar__link_theme_light {
   border-bottom: #ffffff 3px solid;
 }
