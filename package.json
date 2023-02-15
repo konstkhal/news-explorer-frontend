@@ -23,7 +23,7 @@
     "eject": "react-scripts eject",
     "eslint": "eslint",
     "fix": "eslint --fix",
-    "deploy": "npm run build && scp -r ./build/* konstkhal@wassup-42.students.nomoredomainssbs.ru:/home/konstkhal/wassup/frontend"
+    "deploy": "npm run build && scp -r ./build/* konstkhal@wassup-43.students.nomoredomainssbs.ru:/home/konstkhal/wassup/frontend"
   },
   "eslintConfig": {
     "extends": [

@@ -1,16 +1,21 @@
-import './SearchForm.css';
-import { newsApi } from '../../utils/NewsApi';
-import { useState } from 'react';
+import "./SearchForm.css";
+import { newsApi } from "../../utils/NewsApi";
+import { useState } from "react";
 
-const SearchForm = ({ connectionError, buttonText = 'Search', handleSearch, setIsSearching }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [placeholder, setPlaceholder] = useState('Enter topic');
-  const [inputClassName, setInputClassName] = useState('search-form__input');
+const SearchForm = ({
+  connectionError,
+  buttonText = "Search",
+  handleSearch,
+  setIsSearching,
+}) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [placeholder, setPlaceholder] = useState("Enter topic");
+  const [inputClassName, setInputClassName] = useState("search-form__input");
 
   const handleInput = (event) => {
     const { value } = event.target;
-    setPlaceholder('Enter topic');
-    setInputClassName('search-form__input');
+    setPlaceholder("Enter topic");
+    setInputClassName("search-form__input");
     setSearchQuery(value);
   };
 
@@ -18,8 +23,8 @@ const SearchForm = ({ connectionError, buttonText = 'Search', handleSearch, setI
     e.preventDefault();
     connectionError(false);
     if (!searchQuery) {
-      setPlaceholder('Please enter a keyword.');
-      setInputClassName('search-form__input search-form__input_error');
+      setPlaceholder("Please enter a keyword.");
+      setInputClassName("search-form__input search-form__input_error");
       return;
     }
 
@@ -36,24 +41,24 @@ const SearchForm = ({ connectionError, buttonText = 'Search', handleSearch, setI
         console.log(err);
       })
       .finally(() => {
-        setSearchQuery('');
-        setPlaceholder('Enter topic');
-        setInputClassName('search-form__input');
+        setSearchQuery("");
+        setPlaceholder("Enter topic");
+        setInputClassName("search-form__input");
         setIsSearching(false);
       });
   };
 
   return (
-    <form onSubmit={handleSubmit} className='search-form'>
+    <form onSubmit={handleSubmit} className="search-form">
       <input
         onChange={handleInput}
-        value={searchQuery || ''}
-        name='search'
+        value={searchQuery || ""}
+        name="search"
         className={inputClassName}
-        type={'search'}
+        type={"search"}
         placeholder={placeholder}
       ></input>
-      <button className='search-form__submit' type={'submit'}>
+      <button className="search-form__submit" type={"submit"}>
         {buttonText}
       </button>
     </form>

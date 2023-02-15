@@ -65,5 +65,5 @@ class MainApi {
 }
 
 export const mainApi = new MainApi(
-  "https://api.wassup-42.students.nomoredomainssbs.ru"
+  "https://api.wassup-43.students.nomoredomainssbs.ru"
 );

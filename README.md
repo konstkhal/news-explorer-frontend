@@ -2,7 +2,7 @@
 
 Find and bookmark your favorite news articles for later reading.
 
-- [Project page](https://www.wassup-42.students.nomoredomainssbs.ru/)
+- [Project page](https://www.wassup-43.students.nomoredomainssbs.ru/)
 
 - [Backend repo](https://github.com/konstkhal/news-explorer-backend)
 

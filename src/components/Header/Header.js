@@ -3,8 +3,7 @@ import Logo from "../Logo/Logo";
 import Navbar from "../Navbar/Navbar";
 import { usePopups } from "../../contexts/PopupContext";
 import useWindowSize from "../../hooks/UseWindowSize";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { MAX_MOBILE_SIZE } from "../../utils/constants";
 

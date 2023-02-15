@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { usePopups, popupActions } from "../../contexts/PopupContext";
+import { popupActions, usePopups } from "../../contexts/PopupContext";
 import { useLocation } from "react-router";
 import "./Logo.css";
 

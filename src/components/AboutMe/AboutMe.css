@@ -7,7 +7,7 @@
 
 .about-me__image {
   width: 100%;
-  max-width: 350px;
+  max-width: 464px;
   display: block;
   margin: auto;
   border-radius: 50%;
@@ -41,7 +41,7 @@
 }
 
 @media screen and (min-width: 450px) {
-  .about-me__info-warpper {
+  .about-me__info-wrapper {
     max-width: 75%;
   }
 }
