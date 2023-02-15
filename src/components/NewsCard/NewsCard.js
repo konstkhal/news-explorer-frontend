@@ -1,10 +1,10 @@
-import './NewsCard.css';
-import CardLabel from '../CardLabel/CardLabel';
-import { parseDate } from '../../utils/parseDate';
-import { mainApi } from '../../utils/MainApi.ts';
-import { useState } from 'react';
-import { useInfo } from '../../contexts/UserContext';
-import { popupActions, usePopups } from '../../contexts/PopupContext';
+import "./NewsCard.css";
+import CardLabel from "../CardLabel/CardLabel";
+import { parseDate } from "../../utils/parseDate";
+import { mainApi } from "../../utils/MainApi.ts";
+import { useState } from "react";
+import { useInfo } from "../../contexts/UserContext";
+import { popupActions, usePopups } from "../../contexts/PopupContext";
 
 const NewsCard = ({ removeBookmark, ...card }) => {
   const {
@@ -43,7 +43,15 @@ const NewsCard = ({ removeBookmark, ...card }) => {
         });
     } else {
       mainApi
-        .saveArticle({ date: publishedAt, image: urlToImage, keyword, link: url, source: name, text: description, title })
+        .saveArticle({
+          date: publishedAt,
+          image: urlToImage,
+          keyword,
+          link: url,
+          source: name,
+          text: description,
+          title,
+        })
         .then((card) => {
           setSaveId(card._id);
           setIsDeleted(false);
@@ -56,15 +64,17 @@ const NewsCard = ({ removeBookmark, ...card }) => {
     mainApi
       .deleteArticle(searchId || saveId)
       .then(() => {
-        setAndSortSavedCards(savedCards.filter((card) => card.id !== searchId || saveId));
+        setAndSortSavedCards(
+          savedCards.filter((card) => card.id !== searchId || saveId)
+        );
       })
       .catch((err) => console.log(err));
   };
 
   return (
     <li>
-      <article className='news-card'>
-        <div className='news-card__image-container'>
+      <article className="news-card">
+        <div className="news-card__image-container">
           <CardLabel
             onTrashClick={handleTrashClick}
             onBookmark={handleBookMark}
@@ -73,18 +83,27 @@ const NewsCard = ({ removeBookmark, ...card }) => {
             saveId={saveId}
             isDeleted={isDeleted}
           />
-          <a href={url} target={'_blank'} rel='noreferrer'>
-            <img className='news-card__image' src={urlToImage} alt={title}></img>
+          <a href={url} target={"_blank"} rel="noreferrer">
+            <img
+              className="news-card__image"
+              src={urlToImage}
+              alt={title}
+            ></img>
           </a>
         </div>
-        <div className='news-card__info'>
-          <span className='news-card__date'>{parseDate(publishedAt)}</span>
-          <h3 className='news-card__header'>{title}</h3>
-          <blockquote className='news-card__text' cite={name}>
+        <div className="news-card__info">
+          <span className="news-card__date">{parseDate(publishedAt)}</span>
+          <h3 className="news-card__header">{title}</h3>
+          <blockquote className="news-card__text" cite={name}>
             {description}
           </blockquote>
         </div>
-        <a className='news-card__ref hover-fade' href={url} target={'_blank'} rel='noreferrer'>
+        <a
+          className="news-card__ref hover-fade"
+          href={url}
+          target={"_blank"}
+          rel="noreferrer"
+        >
           {name}
         </a>
       </article>

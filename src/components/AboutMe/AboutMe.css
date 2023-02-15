@@ -41,7 +41,7 @@
 }
 
 @media screen and (min-width: 450px) {
-  .about-me__info-warpper {
+  .about-me__info-wrapper {
     max-width: 75%;
   }
 }

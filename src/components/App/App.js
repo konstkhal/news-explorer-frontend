@@ -1,13 +1,19 @@
-import './App.css';
-import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom';
-import Main from '../Main/Main';
-import Footer from '../Footer/Footer';
-import Articles from '../Articles/Articles';
-import { useEffect, useState } from 'react';
-import { usePopups, popupActions } from '../../contexts/PopupContext';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { useInfo } from '../../contexts/UserContext';
-import { mainApi } from '../../utils/MainApi.ts';
+import "./App.css";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import Articles from "../Articles/Articles";
+import { useEffect, useState } from "react";
+import { popupActions, usePopups } from "../../contexts/PopupContext";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import { useInfo } from "../../contexts/UserContext";
+import { mainApi } from "../../utils/MainApi.ts";
 
 function App() {
   const [, popupDispatch] = usePopups();
@@ -34,7 +40,7 @@ function App() {
       .userSignin(email, password)
       .then((user) => {
         signIn(user.name);
-        localStorage.setItem('jwt', JSON.stringify(user.token));
+        localStorage.setItem("jwt", JSON.stringify(user.token));
         mainApi.setUserToken(user.token);
         popupDispatch(popupActions.closeSignInPopup);
         mainApi.getUserArticles().then((cards) => {
@@ -49,21 +55,21 @@ function App() {
 
   useEffect(() => {
     const closeByEsc = (e) => {
-      e.key === 'Escape' && popupDispatch(popupActions.closeAll);
+      e.key === "Escape" && popupDispatch(popupActions.closeAll);
     };
-    document.addEventListener('keydown', closeByEsc);
-    return () => document.removeEventListener('keydown', closeByEsc);
+    document.addEventListener("keydown", closeByEsc);
+    return () => document.removeEventListener("keydown", closeByEsc);
   }, [popupDispatch]);
 
   useEffect(() => {
-    if (!currentUser.isLoggedIn && location.pathname === '/saved-articles') {
-      navigate('/');
+    if (!currentUser.isLoggedIn && location.pathname === "/saved-articles") {
+      navigate("/");
       popupDispatch(popupActions.openSignUpPopup);
     }
   }, [currentUser.isLoggedIn, navigate, popupDispatch, location.pathname]);
 
   useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
+    const jwt = localStorage.getItem("jwt");
     if (jwt) {
       mainApi.setUserToken(JSON.parse(jwt));
       mainApi
@@ -82,21 +88,31 @@ function App() {
   }, [setAndSortSavedCards, signIn]);
 
   return (
-    <div className='app'>
+    <div className="app">
       <Routes>
         <Route
-          path='/'
-          element={<Main responseError={responseError} setResponseError={setResponseError} handleSignin={handleSignin} handleSignup={handleSignup} />}
+          path="/"
+          element={
+            <Main
+              responseError={responseError}
+              setResponseError={setResponseError}
+              handleSignin={handleSignin}
+              handleSignup={handleSignup}
+            />
+          }
         />
         <Route
-          path='/saved-articles'
+          path="/saved-articles"
           element={
-            <ProtectedRoute isLoggedIn={currentUser.isLoggedIn} redirectPath='/'>
+            <ProtectedRoute
+              isLoggedIn={currentUser.isLoggedIn}
+              redirectPath="/"
+            >
               <Articles />
             </ProtectedRoute>
           }
         />
-        <Route path='*' element={<Navigate to='/' />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />
     </div>

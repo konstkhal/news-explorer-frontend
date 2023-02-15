@@ -1,4 +1,4 @@
-import { popupActions } from '../contexts/PopupContext';
+import { popupActions } from "../contexts/PopupContext";
 
 const initialPopupState = {
   isUserMenuOpen: false,
